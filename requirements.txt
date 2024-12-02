@@ -1,3 +1,7 @@
 scikit-learn
 git+https://github.com/peterhaupt/pyFUME
 faker
+dxdata
+jupyter
+notebook
+ipykernel

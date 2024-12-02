@@ -1,0 +1,15 @@
+,percentage,mean,standard deviation
+sex,,,
+Female,0,,
+Male,0,,
+age_at_baseline,,55.016,8.785791042842813
+depression,,,
+Yes,48.8,,
+No,51.2,,
+months_depression_after_baseline,,70.76762295081967,61.64241709095807
+source_of_depression_reporting,,,
+Category_C,20.599999999999998,,
+Category_D,20.599999999999998,,
+Category_A,18.8,,
+Category_B,18.6,,
+Category_E,21.4,,
