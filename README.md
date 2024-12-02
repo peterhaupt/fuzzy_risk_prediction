@@ -14,4 +14,6 @@ It is highly recommended to run the code in a virtual environment. The code has 
 
 The required packages should only be installed with the requirements.txt file. This means to run the following command from the within the cloned folder of the repository in the terminal:
 
-`pip install requirements.txt'
+`pip install requirements.txt`
+
+more text
