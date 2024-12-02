@@ -30,4 +30,18 @@ This folder contains all code that is required to perform the methods that are d
 
 Run the Jupyter notebook `02_data_analysis_and_cleaning.ipynb`.
 
+## Feature Selection
+
+This folder contains all code that is required to perform the feature selection steps that are described in the section feature selection of the chapter experimental design of the thesis. The feature selection methods mutual information and logistic regression with LASSO are calculated in the Jupyter notebook `031_feature_selection.ipynb`and the recursive feature elimination (RFE) is performed with the Python script `032_RFE.py`. Please run them in the following order.
+
+`031_feature_selection.ipynb`
+`032_RFE.py`
+
+
+
+
+## Sample Data
+
+The folders with the sample data and results can be deleted
+
 

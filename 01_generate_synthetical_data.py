@@ -3,9 +3,10 @@ import numpy as np
 import pickle
 from faker import Faker
 from datetime import date, timedelta
+import os
 
 # Load column_list from pkl file
-with open("data/column_list.pkl", "rb") as file:
+with open("column_list.pkl", "rb") as file:
     column_list = pickle.load(file)
 
 # Initialize Faker for generating synthetic data
@@ -47,6 +48,9 @@ def generate_synthetic_data(column_list, rows=500):
 # Generate two synthetic dataframes
 train_df = generate_synthetic_data(column_list)
 test_df = generate_synthetic_data(column_list)
+
+# Create the "data" subfolder if it doesn't already exist
+os.makedirs("data", exist_ok=True)
 
 # Save the dataframes as pkl files, overwriting if they already exist
 train_df.to_pickle("data/train.pkl")
