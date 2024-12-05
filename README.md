@@ -37,11 +37,22 @@ This folder contains all code that is required to perform the feature selection 
 1. `031_feature_selection.ipynb`
 2. `032_RFE.py`
 
+## Model Training
+This folder contains all code that is required to perform the model training.
+
+First, hyperparameter tuning is performed to identify the best performing hyperparameters for the fuzzy model. Please run this Python script for the hyperparameter tuning. This might take around ten minutes for 50 hyperparameter combinations and a sample size of 500.
+
+`041_hyperparameter_tuning.py`
+
+Second, the threshold for the binary classification is tuned. Third, a cross-validation is performed to evaluate the stability of the model performance.
+
+
 
 
 
 ## Sample Data
 
-The folders with the sample data and results can be deleted
+The folders XXX contain sample data / processed information like selected features. If you want to run everything from scratch simply delete all subfolders.
+
 
 
