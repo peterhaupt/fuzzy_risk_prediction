@@ -44,7 +44,15 @@ First, hyperparameter tuning is performed to identify the best performing hyperp
 
 `041_hyperparameter_tuning.py`
 
-Second, the threshold for the binary classification is tuned. Third, a cross-validation is performed to evaluate the stability of the model performance.
+The implementation of FST-PSO clustering relies on an external package, which does not provide functionality to fix randomness using a random seed.
+
+Second, the threshold for the binary classification is tuned. Please run the following Jupyter notebook to tune the decision threshold.
+
+
+
+
+
+Third, a cross-validation is performed to evaluate the stability of the model performance.
 
 
 

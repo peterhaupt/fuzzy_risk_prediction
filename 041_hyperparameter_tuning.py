@@ -36,8 +36,8 @@ param_grid = {
     'random_state': [2024]
 }
 
-# Sample 10 hyperparameter combinations from the grid
-param_sampler = list(ParameterSampler(param_grid, n_iter=50, random_state=81))
+# Sample 50 hyperparameter combinations from the grid
+param_sampler = list(ParameterSampler(param_grid, n_iter=50, random_state=2024))
 
 print(f"Selected {len(param_sampler)} hyperparameter combinations.")
 

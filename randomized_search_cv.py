@@ -31,7 +31,7 @@ def randomized_search_cv(df, params):
                                        mf_shape=params.get('mf_shape', 'gauss'),
                                        consequent_method=params.get('consequent_method', 'local_LSE'),
                                        merge_threshold=params.get('merge_threshold', 1.0),
-                                       random_state=params.get('random_state', 81),
+                                       random_state=params.get('random_state', 2024),
                                        m=m_value if clustering_method in ['fcm', 'fcm_binary', 'fst-pso', 'gk'] else None,
                                        covariance_type=covariance_type if clustering_method == 'gmm' else None)
 
