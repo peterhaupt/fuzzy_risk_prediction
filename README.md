@@ -48,11 +48,13 @@ The implementation of FST-PSO clustering relies on an external package, which do
 
 Second, the threshold for the binary classification is tuned. Please run the following Jupyter notebook to tune the decision threshold.
 
+`042_threshold_tuning.ipynb`
 
+Third, a cross-validation is performed to evaluate the stability of the model performance. Run the following Jupyter notebook to perform the cross-validation.
 
+`043_cross_validation.ipynb`
 
-
-Third, a cross-validation is performed to evaluate the stability of the model performance.
+Fourth, 
 
 
 
