@@ -54,9 +54,9 @@ Third, a cross-validation is performed to evaluate the stability of the model pe
 
 `043_cross_validation.ipynb`
 
-Fourth, 
+Fourth, the final model is trained on the whole training dataset. Run the following Jupyter notebook to train the final model.
 
-
+`044_training_final_model.ipynb`
 
 
 
