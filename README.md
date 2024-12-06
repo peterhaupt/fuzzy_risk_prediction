@@ -68,9 +68,9 @@ Second, the performance on the unseen test data is compared to a baseline logist
 
 `052_baseline_logistic_regression.ipynb`
 
+Third, the performance on the unseen test data is also compared to a baseline random forest model. Run the following Jupyter notebook to evaluate the performance of a random forest model on the same data.
 
-Third, the performance on the unseen test data is also compared to a baseline random forest model.
-
+`053_baseline_random_forest.ipynb`
 
 ## Create Figures
 
