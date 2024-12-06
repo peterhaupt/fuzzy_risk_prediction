@@ -48,21 +48,21 @@ def generate_synthetic_data(column_list, rows=500):
         elif dtype == "int64":
             # Generate correlated data for every fifth int64 column
             if len(data) % 5 == 0:
-                data[col] = generate_correlated_data(data["target"], 0.1, rows).astype(int)
+                data[col] = generate_correlated_data(data["target"], 0.2, rows).astype(int)
             else:
                 data[col] = np.random.randint(1, 101, rows)
         elif dtype == "float64":
             # Generate correlated data for every fifth float64 column
             if len(data) % 5 == 0:
-                data[col] = generate_correlated_data(data["target"], 0.1, rows)
+                data[col] = generate_correlated_data(data["target"], 0.2, rows)
             else:
                 data[col] = np.random.random(rows) * 100
         elif dtype == "O":
             # Set different categories for every fiftieth categorical column
-            if len(data) % 50 == 0:
+            if len(data) % 25 == 0:
                 data[col] = [
-                    "Category_B" if t == 1 and np.random.rand() > 0.95 else
-                    "Category_E" if t == 0 and np.random.rand() > 0.95 else
+                    "Category_B" if t == 1 and np.random.rand() > 0.8 else
+                    "Category_E" if t == 0 and np.random.rand() > 0.8 else
                     np.random.choice(["Category_A", "Category_C", "Category_D"])
                     for t in data["target"]
                 ]
