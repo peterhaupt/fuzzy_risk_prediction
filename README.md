@@ -16,7 +16,7 @@ The folders data, feature_selection, figures, model_evaluation, and model_traini
 
 ## Create Virtual Environment and Install Necessary Packages
 
-It is highly recommended to run the code in a virtual environment. The code has been tested on the following Python versions 3.9.20, 3.11.9, and 3.13.0.
+**It is highly recommended to run the code in a virtual environment. The code has been tested on the following Python versions 3.9.20, 3.11.9, and 3.11.10. This code and especially pyFUME is not running on Python 3.12 or higher.**
 
 **Please ensure that no previous version of pyFUME is installed in the virtual environment. The most robust solution is to run this code in a newly created virtual environment. This is due to the fact that pyFUME also requires specific older versions of Numpy and Pandas.**
 
