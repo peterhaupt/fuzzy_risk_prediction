@@ -60,11 +60,13 @@ Fourth, the final model is trained on the whole training dataset. Run the follow
 
 ## Model Evaluation
 
-The final model is evaluated in three main steps. First, the model is evaluated on the unseen test data. Run the following notebook to evaluate the model on the unseen test data.
+The final model is evaluated in three main steps. First, the model is evaluated on the unseen test data. Run the following Jupyter notebook to evaluate the model on the unseen test data.
 
 `051_model_evaluation.ipynb`
 
-Second, the performance on the unseen test data is compared to a baseline logistic regression model.
+Second, the performance on the unseen test data is compared to a baseline logistic regression model. Run the following Jupyter notebook to evaluate the performance of a logistic regression model on the same data.
+
+`052_baseline_logistic_regression.ipynb`
 
 
 Third, the performance on the unseen test data is also compared to a baseline random forest model.
