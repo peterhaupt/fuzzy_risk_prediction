@@ -8,6 +8,12 @@ Clone this repository with the following command in the terminal.
 
 `git clone https://github.com/peterhaupt/fuzzy_risk_prediction`
 
+## Sample Data
+
+The folders data, feature_selection, figures, model_evaluation, and model_training already contain sample data. If you want to run the whole modelling process from scratch, run this script to delete locally all the sample data.
+
+`bash 000_delete_sample_data.sh`
+
 ## Create Virtual Environment and Install Necessary Packages
 
 It is highly recommended to run the code in a virtual environment. The code has been tested on the following Python versions 3.9.20, 3.11.9, and 3.13.0.
@@ -32,7 +38,7 @@ Run the Jupyter notebook `020_data_analysis_and_cleaning.ipynb`.
 
 ## Feature Selection
 
-This folder contains all code that is required to perform the feature selection steps that are described in the section feature selection of the chapter experimental design of the thesis. The feature selection methods mutual information and logistic regression with LASSO are calculated in the Jupyter notebook `031_feature_selection.ipynb`and the recursive feature elimination (RFE) is performed with the Python script `032_RFE.py`. Please run them in the following order.
+This folder contains all code that is required to perform the feature selection steps that are described in the section feature selection of the chapter experimental design of the thesis. The feature selection methods mutual information and logistic regression with LASSO are calculated in the Jupyter notebook `031_feature_selection.ipynb`and the recursive feature elimination (RFE) is performed with the Python script `032_RFE.py`. RFE is computationally expensive and takes a few minutes to run. Please run them in the following order.
 
 1. `031_feature_selection.ipynb`
 2. `032_RFE.py`
@@ -74,13 +80,6 @@ Third, the performance on the unseen test data is also compared to a baseline ra
 
 ## Create Figures
 
+The figures of the master thesis can be as well created with a Jupyter notebook. Run the following Jupyter notebook to create the figures.
 
-
-
-
-## Sample Data - Move to Beginning of Readme
-
-The folders XXX contain sample data / processed information like selected features. If you want to run everything from scratch simply delete all subfolders.
-
-
-
+`060_create_figures.ipynb`
