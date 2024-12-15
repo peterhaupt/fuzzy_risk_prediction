@@ -4,13 +4,7 @@ import pickle
 from faker import Faker
 from datetime import timedelta
 import os
-
-# Load column_list from pkl file
-with open("column_list.pkl", "rb") as file:
-    column_list = pickle.load(file)
-
-# Initialize Faker for generating synthetic data
-fake = Faker()
+import argparse
 
 # Define a function to generate random dates within a range
 def random_date(start, end, rows):
@@ -25,7 +19,11 @@ def generate_correlated_data(target, correlation, rows):
     return target * correlation + noise * np.sqrt(1 - correlation**2)
 
 # Define a function to generate synthetic data based on column types
-def generate_synthetic_data(column_list, rows=500):
+def generate_synthetic_data(column_list, rows=500, \
+                            percent_correlated_numerical=0.2,\
+                            percent_correlated_categorical=0.05, \
+                            strength_numerical_correlation=0.2,\
+                            noise_correlated_categorical_columns=0.8):
     data = {}
 
     # Create "target" first as binary
@@ -33,6 +31,8 @@ def generate_synthetic_data(column_list, rows=500):
 
     # Remove "target" from column_list after creating it
     column_list = [(col, dtype) for col, dtype in column_list if col != "target"]
+
+    fake = Faker()
 
     for col, dtype in column_list:
         if col == "eid":
@@ -47,22 +47,22 @@ def generate_synthetic_data(column_list, rows=500):
             data[col] = random_date("2006-03-14", "2010-09-30", rows)
         elif dtype == "int64":
             # Generate correlated data for every fifth int64 column
-            if len(data) % 5 == 0:
-                data[col] = generate_correlated_data(data["target"], 0.15, rows).astype(int)
+            if len(data) % int(1 / percent_correlated_numerical) == 0:
+                data[col] = generate_correlated_data(data["target"], strength_numerical_correlation, rows).astype(int)
             else:
                 data[col] = np.random.randint(1, 101, rows)
         elif dtype == "float64":
             # Generate correlated data for every fifth float64 column
-            if len(data) % 5 == 0:
-                data[col] = generate_correlated_data(data["target"], 0.15, rows)
+            if len(data) % int(1/percent_correlated_numerical) == 0:
+                data[col] = generate_correlated_data(data["target"], strength_numerical_correlation, rows)
             else:
                 data[col] = np.random.random(rows) * 100
         elif dtype == "O":
             # Set different categories for every fiftieth categorical column
-            if len(data) % 25 == 0:
+            if len(data) % int(1/percent_correlated_categorical) == 0:
                 data[col] = [
-                    "Category_B" if t == 1 and np.random.rand() > 0.9 else
-                    "Category_E" if t == 0 and np.random.rand() > 0.9 else
+                    "Category_B" if t == 1 and np.random.rand() > noise_correlated_categorical_columns else
+                    "Category_E" if t == 0 and np.random.rand() > noise_correlated_categorical_columns else
                     np.random.choice(["Category_A", "Category_C", "Category_D"])
                     for t in data["target"]
                 ]
@@ -81,15 +81,44 @@ def generate_synthetic_data(column_list, rows=500):
     cols = [col for col in df.columns if col != "target"] + ["target"]
     return df[cols]
 
-# Generate two synthetic dataframes
-train_df = generate_synthetic_data(column_list)
-test_df = generate_synthetic_data(column_list)
+if __name__ == "__main__":
+    # Parse command-line arguments for sample size
+    parser = argparse.ArgumentParser(description="Generate synthetic dataframes.")
+    parser.add_argument("--sample_size", type=int, default=500, help="Number of rows in each generated dataframe.")
+    parser.add_argument("--percent_correlated_numerical", type=float, default=0.20, help="Percentage of correlated numerical columns.")
+    parser.add_argument("--percent_correlated_categorical", type=float, default=0.05, help="Percentage of correlated categorical columns.")
+    parser.add_argument("--strength_numerical_correlation", type=float, default=0.20, help="Strength of numerical correlation.")
+    parser.add_argument("--noise_correlated_categorical_columns", type=float, default=0.8, help="Noise for correlated categorical columns.")
+    args = parser.parse_args()
 
-# Create the "data" subfolder if it doesn't already exist
-os.makedirs("data", exist_ok=True)
+    # Load column_list from pkl file
+    with open("column_list.pkl", "rb") as file:
+        column_list = pickle.load(file)
 
-# Save the dataframes as pkl files, overwriting if they already exist
-train_df.to_pickle("data/train.pkl")
-test_df.to_pickle("data/test.pkl")
+    # Generate two synthetic dataframes
+    train_df = generate_synthetic_data(column_list, rows=args.sample_size, \
+                                       percent_correlated_numerical = args.percent_correlated_numerical,\
+                                        percent_correlated_categorical=args.percent_correlated_categorical, \
+                                        strength_numerical_correlation=args.strength_numerical_correlation, \
+                                            noise_correlated_categorical_columns=args.noise_correlated_categorical_columns)
+    test_df = generate_synthetic_data(column_list, rows=args.sample_size, \
+                                       percent_correlated_numerical = args.percent_correlated_numerical,\
+                                        percent_correlated_categorical=args.percent_correlated_categorical, \
+                                        strength_numerical_correlation=args.strength_numerical_correlation, \
+                                            noise_correlated_categorical_columns=args.noise_correlated_categorical_columns)
+    # Create the "data" subfolder if it doesn't already exist
+    os.makedirs("data", exist_ok=True)
 
-print("Synthetic dataframes created and saved as 'train.pkl' and 'test.pkl'.")
+    # Save the dataframes as pkl files, overwriting if they already exist
+    train_df.to_pickle("data/train.pkl")
+    test_df.to_pickle("data/test.pkl")
+
+    # Save the sample_size as a pkl file in the "data" subfolder
+    with open("data/sample_size.pkl", "wb") as size_file:
+        pickle.dump(args.sample_size, size_file)
+
+    print(f"Synthetic dataframes with {args.sample_size} rows each created and saved as 'train.pkl' and 'test.pkl'.\n"
+      f"Arguments used: percent_correlated_numerical={args.percent_correlated_numerical}, "
+      f"percent_correlated_categorical={args.percent_correlated_categorical}, "
+      f"strength_numerical_correlation={args.strength_numerical_correlation}, "
+      f"noise_correlated_categorical_columns={args.noise_correlated_categorical_columns}.")

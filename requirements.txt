@@ -6,3 +6,4 @@ jupyter
 notebook
 ipykernel
 matplotlib
+argparse
