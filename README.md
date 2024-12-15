@@ -33,14 +33,14 @@ Run the Python script `010_generate_synthetical_data.py`.
 The generation of the synthetical data can be configured. Thereby, it will be easier or more difficult for the model to learn from the data. The following parameterse can be configured.
 
 - sample_size determines both the size of the train and test dataset. Both datasets have the same sample size. A larger sample size needs more time for the training. For sample sizes below 500 it will be difficult to learn anything from the data. Sample sizes above 2000 will require a lot of computational resources.
-- percent_correlated_numerical controls how many numerical columns are correlated to the target column. All other numerical columns contain random values. The value should be between 0.05 and 0.5.
-- percent_correlated_categorical controls how many categorical columns are correlated to the target column. All other categorical columns contain random values. The value should be between 0.01 and 0.1.
-- strength_numerical_correlation controls the strength of the Pearson correlation between the non-random numerical columns and the target. The value should be between 0.05 and 0.5.
-- noise_correlated_categorical_columns controls the percentage of noise which is added to the non-random categorical columns. The value should be between 0.5 and 0.95.
+- percent_correlated_numerical controls how many numerical columns are correlated to the target column. All other numerical columns contain random values. The value should be between 0.05 and 0.2.
+- percent_correlated_categorical controls how many categorical columns are correlated to the target column. All other categorical columns contain random values. The value should be between 0.01 and 0.05.
+- strength_numerical_correlation controls the strength of the Pearson correlation between the non-random numerical columns and the target. The value should be between 0.05 and 0.25.
+- noise_correlated_categorical_columns controls the percentage of noise which is added to the non-random categorical columns. The value should be between 0.8 and 0.99.
 
 To create adjusted synthetical data you have to run the Python script in the terminal with the following parameters. Here an example with the default values.
 
-`python 010_generate_synthetical_data.py --sample_size 500 --percent_correlated_numerical 0.20 --percent_correlated_categorical 0.05 --strength_numerical_correlation 0.20 --noise_correlated_categorical_columns 0.8`
+`python 010_generate_synthetical_data.py --sample_size 500 --percent_correlated_numerical 0.20 --percent_correlated_categorical 0.05 --strength_numerical_correlation 0.20 --noise_correlated_categorical_columns 0.9`
 
 ## Data Analysis and Cleaning
 

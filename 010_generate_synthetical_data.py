@@ -23,7 +23,7 @@ def generate_synthetic_data(column_list, rows=500, \
                             percent_correlated_numerical=0.2,\
                             percent_correlated_categorical=0.05, \
                             strength_numerical_correlation=0.2,\
-                            noise_correlated_categorical_columns=0.8):
+                            noise_correlated_categorical_columns=0.9):
     data = {}
 
     # Create "target" first as binary
@@ -88,7 +88,7 @@ if __name__ == "__main__":
     parser.add_argument("--percent_correlated_numerical", type=float, default=0.20, help="Percentage of correlated numerical columns.")
     parser.add_argument("--percent_correlated_categorical", type=float, default=0.05, help="Percentage of correlated categorical columns.")
     parser.add_argument("--strength_numerical_correlation", type=float, default=0.20, help="Strength of numerical correlation.")
-    parser.add_argument("--noise_correlated_categorical_columns", type=float, default=0.8, help="Noise for correlated categorical columns.")
+    parser.add_argument("--noise_correlated_categorical_columns", type=float, default=0.9, help="Noise for correlated categorical columns.")
     args = parser.parse_args()
 
     # Load column_list from pkl file

@@ -22,10 +22,18 @@ for root, _, files in os.walk(data_directory):
 
 print(f"Loaded {len(dfs)} dataframes.")
 
+import pickle
+
+# Load the integer value of sample_size from the pkl file
+with open("data/sample_size.pkl", "rb") as file:
+    sample_size = pickle.load(file)
+
+print(f"Loaded sample_size: {sample_size}")
+
 # Define the parameter grid
 param_grid = {
     'dataframe_name': list(dfs.keys()),
-    'sample_size': [500],
+    'sample_size': [sample_size],
     'nr_clus': list(range(1, 21)),
     'clustering_method': ["fcm", "fcm_binary", "fst-pso", "gk", "gmm"],
     'm': [1.5, 2.0, 2.5],  # For fcm, fcm_binary, fst-pso, gk
