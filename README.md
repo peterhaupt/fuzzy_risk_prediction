@@ -33,10 +33,10 @@ Run the Python script `010_generate_synthetical_data.py`.
 The generation of the synthetical data can be configured. Thereby, it will be easier or more difficult for the model to learn from the data. The following parameterse can be configured.
 
 - sample_size determines both the size of the train and test dataset. Both datasets have the same sample size. A larger sample size needs more time for the training. For sample sizes below 500 it will be difficult to learn anything from the data. Sample sizes above 2000 will require a lot of computational resources.
-- percent_correlated_numerical controls how many numerical columns are correlated to the target column. All other numerical columns contain random values.
-- percent_correlated_categorical controls how many categorical columns are correlated to the target column. All other categorical columns contain random values.
-- strength_numerical_correlation controls the strength of the Pearson correlation between the non-random numerical columns and the target.
-- noise_correlated_categorical_columns controls the percentage of noise which is added to the non-random categorical columns.
+- percent_correlated_numerical controls how many numerical columns are correlated to the target column. All other numerical columns contain random values. The value should be between 0.05 and 0.5.
+- percent_correlated_categorical controls how many categorical columns are correlated to the target column. All other categorical columns contain random values. The value should be between 0.01 and 0.1.
+- strength_numerical_correlation controls the strength of the Pearson correlation between the non-random numerical columns and the target. The value should be between 0.05 and 0.5.
+- noise_correlated_categorical_columns controls the percentage of noise which is added to the non-random categorical columns. The value should be between 0.5 and 0.95.
 
 To create adjusted synthetical data you have to run the Python script in the terminal with the following parameters. Here an example with the default values.
 
@@ -47,6 +47,14 @@ To create adjusted synthetical data you have to run the Python script in the ter
 This folder contains all code that is required to perform the methods that are described in the section data cleaning of the chapter experimental design of the thesis.
 
 Run the Jupyter notebook `020_data_analysis_and_cleaning.ipynb`.
+
+For later analysis the test data has four additional columns. These columns are removed from the train dataset, because they would otherwise bias the training process.
+
+special_columns = ['eid', 'p130894', 'p130895', 'p53_i0']
+- eid (participants ID)
+- p130894 (date of first occurence of depression),
+- p130895 (source of first occurence of depression)
+- p53_i0 (date of baseline assessment)
 
 ## Feature Selection
 
@@ -62,7 +70,7 @@ First, hyperparameter tuning is performed to identify the best performing hyperp
 
 `041_hyperparameter_tuning.py`
 
-The implementation of FST-PSO clustering relies on an external package, which does not provide functionality to fix randomness using a random seed.
+The implementation of FST-PSO clustering relies on an external package, which does not provide functionality to fix randomness using a random seed. The hyperparameter tuning will display a lot of errors due to problems with numerical stability and other algorithmic incompatibilities. For these errors corresponding backup procedures are implemented. Thereby, these errors do not influence the next steps in the pipeline.
 
 Second, the threshold for the binary classification is tuned. Please run the following Jupyter notebook to tune the decision threshold.
 
