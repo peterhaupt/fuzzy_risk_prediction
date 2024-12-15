@@ -134,8 +134,8 @@ if __name__ == "__main__":
     # create dataset with the selected feature and store it in a pickle file
 
     # Load the test and train datasets
-    train_df_all = pd.read_pickle("data/all_late_depression_train_encoded_500.pkl")
-    test_df_all = pd.read_pickle("data/all_late_depression_test_encoded_500.pkl")
+    train_df_all = pd.read_pickle("data/all_late_depression_train_encoded.pkl")
+    test_df_all = pd.read_pickle("data/all_late_depression_test_encoded.pkl")
 
     # List of special columns only available in the test dataset
     special_columns = ['eid', 'p130894', 'p130895', 'p53_i0']
